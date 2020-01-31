@@ -40,10 +40,10 @@ vidsFolder = '/home/'+user+'/Tap/dataset/tap/videos/'
 tempFolder = '/home/'+user+'/Tap/dataset/tap/temp/'
 
 for event in events:
-	#print (event)
+	# print(event)
 	fileName = event["Records"][0]["s3"]["object"]["key"]
 	fileNameWOExt = os.path.splitext(fileName)[0]
-	print (fileNameWOExt)
+	print(fileNameWOExt)
 	try:
 		print(client.fget_object(bucket, fileName, vidsFolder+fileName))
 	except ResponseError as err:
@@ -52,7 +52,7 @@ for event in events:
 	os.system(myCmd)
 	tempFile = tempFolder+fileNameWOExt+'.WAV'
 	tempFileName = fileNameWOExt+'.WAV'
-	print (tempFile)
+	print(tempFile)
 	try:
 		with open(tempFile, 'rb') as file_data:
 			file_stat = os.stat(tempFile)
