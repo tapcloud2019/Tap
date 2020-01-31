@@ -9,8 +9,10 @@ import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+user = 'raymond'
+
 class Watcher:
-    DIRECTORY_TO_WATCH = "/home/raymond/Tap/dataset/tap/transcription"
+    DIRECTORY_TO_WATCH = "/home/"+user+"/Tap/dataset/tap/transcription"
 
     def __init__(self):
         self.observer = Observer()
@@ -47,7 +49,7 @@ class Handler(FileSystemEventHandler):
 
     @staticmethod
     def ner_upload():
-        os.chdir('/home/raymond/Tap/dataset/tap/transcription')
+        os.chdir('/home/'+user+'/Tap/dataset/tap/transcription')
         transript_file = ''
         for file in glob.glob("*.txt"):
             transript_file = file
