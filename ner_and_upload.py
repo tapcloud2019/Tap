@@ -52,6 +52,8 @@ class Handler(FileSystemEventHandler):
         for file in glob.glob("*.txt"):
             transript_file = file
 
+        transript_fileWOExt = os.path.splitext(transript_file)[0]
+
         with open(transript_file, 'r') as file:
             transript = file.read().replace('\n', '')
         print(transript)
@@ -66,7 +68,6 @@ class Handler(FileSystemEventHandler):
 
         fileNameWOExt = os.path.splitext(transript_file)[0]
 
-
         ACCESS_KEY = "admin"
         SECRET_KEY = "password"
 
@@ -78,16 +79,9 @@ class Handler(FileSystemEventHandler):
 
         # Append metadata onto original video and upload to new Minio Bucket
         try:
-            copy_result = minioClient.copy_object("postprocess", transript_file+".WAV", "preprocess/"+transript_file+".WAV", metadata=metadata)   
+            copy_result = minioClient.copy_object("postprocess", transript_fileWOExt+".WAV", "preprocess/"+transript_fileWOExt+".WAV", metadata=metadata)   
         except ResponseError as err:
             print(err)
-
-        # Error-Checking to validate metadata has been appended to the corresponding video
-        # try:
-        #     print(minioClient.fget_object("postprocess", "updatedFileName", "/home/raymond/Desktop/updatedFileName"))
-        # except ResponseError as err:
-        #     print(err)
-
 
 if __name__ == '__main__':
     w = Watcher()

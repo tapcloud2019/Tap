@@ -45,10 +45,10 @@ for event in events:
 	fileNameWOExt = os.path.splitext(fileName)[0]
 	print (fileNameWOExt)
 	print(client.fget_object(bucket, fileName, vidsFolder+fileName))
-	myCmd = 'ffmpeg -i '+vidsFolder+fileName+' -ab 64k -ac 2 -ar 16000 -vn '+tempFolder+fileNameWOExt+'.wav'
+	myCmd = 'ffmpeg -i '+vidsFolder+fileName+' -ab 64k -ac 2 -ar 16000 -vn '+tempFolder+fileNameWOExt+'.WAV'
 	os.system(myCmd)
-	tempFile = tempFolder+fileNameWOExt+'.wav'
-	tempFileName = fileNameWOExt+'.wav'
+	tempFile = tempFolder+fileNameWOExt+'.WAV'
+	tempFileName = fileNameWOExt+'.WAV'
 	print (tempFile)
 	try:
 		with open(tempFile, 'rb') as file_data:
