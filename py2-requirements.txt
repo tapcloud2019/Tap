@@ -13,7 +13,7 @@ idna==2.8
 kiwisolver==1.1.0
 matplotlib==2.2.4
 minio==5.0.7
-nltk==3.4
+nltk==3.4.5
 numpy==1.16.4
 objgraph==3.4.1
 opencv-python==4.1.2.30
