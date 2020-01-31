@@ -81,7 +81,8 @@ class Handler(FileSystemEventHandler):
 
         # Append metadata onto original video and upload to new Minio Bucket
         try:
-            copy_result = minioClient.copy_object("postprocess", transript_fileWOExt+".WAV", "preprocess/"+transript_fileWOExt+".WAV", metadata=metadata)   
+            copy_result = minioClient.copy_object("postprocess", transript_fileWOExt+".WAV", "preprocess/"+transript_fileWOExt+".WAV", metadata=metadata)
+            os.remove('/home/'+user+'/Tap/dataset/tap/transcription/'+transript_file)
         except ResponseError as err:
             print(err)
 
