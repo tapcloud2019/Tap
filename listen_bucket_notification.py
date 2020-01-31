@@ -44,7 +44,10 @@ for event in events:
 	fileName = event["Records"][0]["s3"]["object"]["key"]
 	fileNameWOExt = os.path.splitext(fileName)[0]
 	print (fileNameWOExt)
-	print(client.fget_object(bucket, fileName, vidsFolder+fileName))
+	try:
+		print(client.fget_object(bucket, fileName, vidsFolder+fileName))
+	except ResponseError as err:
+		print(err)
 	myCmd = 'ffmpeg -i '+vidsFolder+fileName+' -ab 64k -ac 2 -ar 16000 -vn '+tempFolder+fileNameWOExt+'.WAV'
 	os.system(myCmd)
 	tempFile = tempFolder+fileNameWOExt+'.WAV'
