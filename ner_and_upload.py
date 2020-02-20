@@ -77,7 +77,7 @@ class Handler(FileSystemEventHandler):
         minioClient = Minio('127.0.0.1:9000', access_key= ACCESS_KEY, secret_key= SECRET_KEY, secure=False)
 
         # Insert output from Deepspeech into this variable
-        metadata = {"Transcript": transript, "Entities": str(ner)}
+        metadata = {"Transcript": transript, "Entities": json.dumps(ner)}
 
         # Append metadata onto original video and upload to new Minio Bucket
         try:
