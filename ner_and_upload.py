@@ -80,11 +80,28 @@ class Handler(FileSystemEventHandler):
         metadata = {"Transcript": transript, "Entities": json.dumps(ner)}
 
         # Append metadata onto original video and upload to new Minio Bucket
+        found = False
         try:
-            copy_result = minioClient.copy_object("postprocess", transript_fileWOExt+".WAV", "preprocess/"+transript_fileWOExt+".WAV", metadata=metadata)
-            os.remove('/home/'+user+'/Tap/dataset/tap/transcription/'+transript_file)
-        except ResponseError as err:
-            print(err)
+            print('before minio stat object')
+            print(minioClient.stat_object("video", transript_fileWOExt+".mp4"))
+            found = True
+            print('after minio stat object')
+        except:
+            print('Error in found')
+        if (found):
+            print('found')
+            try:
+                copy_result = minioClient.copy_object("postprocess", transript_fileWOExt+".mp4", "video/"+transript_fileWOExt+".mp4", metadata=metadata)
+                os.remove('/home/'+user+'/Tap/dataset/tap/transcription/'+transript_file)
+            except ResponseError as err:
+                print(err)
+        else:
+            print('not found')
+            try:
+                copy_result = minioClient.copy_object("postprocess", transript_fileWOExt+".WAV", "preprocess/"+transript_fileWOExt+".WAV", metadata=metadata)
+                os.remove('/home/'+user+'/Tap/dataset/tap/transcription/'+transript_file)
+            except ResponseError as err:
+                print(err)
 
 if __name__ == '__main__':
     w = Watcher()

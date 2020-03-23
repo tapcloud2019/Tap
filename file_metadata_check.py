@@ -7,7 +7,7 @@ import json
 user = 'raymond'
 tempFolder = '/home/'+user+'/Tap/dataset/tap/temp/'
 
-fileToCheck = 'starwars.WAV'
+fileToCheck = 'starwars.mp4'
 
 ACCESS_KEY = "admin"
 SECRET_KEY = "password"
