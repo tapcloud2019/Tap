@@ -1,7 +1,6 @@
 # TAP
 
 ## MinIO: http://localhost:9000/minio/video/  
-## Rich Media Platform: http://localhost:5000/rmp  
 
 ### 1) Converts Video to Audio file (Video to preprocess bucket):  
 **Description:** listen_bucket_notification.py listens for any file upload to video bucket. It will then convert the video file to audio and upload it to preprocess bucket.
@@ -9,11 +8,13 @@
 **Python Environment:** Python 3
 
 **Command for activating required Python Virtual Environment:**  
-source ~/PythonEnv/py3_deeppavlov/bin/activate  
+Open a new terminal
+> source ~/PythonEnv/py3_deeppavlov/bin/activate  
 
 **Command for triggering the listener:**  
-cd ~/Tap  
-python listen_bucket_notification.py  
+In the same terminal
+> cd ~/Tap  
+> python listen_bucket_notification.py  
 
 ### 2) Generate transcript from audio file (Preprocess bucket to local file system):  
 **Description:** listen_preprocess_notif.py listens for any file upload to preprocess bucket. It will then take the audio file and pass it through the DeepSpeech2 engine to generate the transcript. The transcript would be temporarily saved to the local file system.
@@ -48,3 +49,5 @@ python ner_and_upload.py
 **Command to execute:**  
 cd ~/TAP_RMP_FE_2019  
 node /home/raymond/.yarn/bin/serve -s build  
+
+## Rich Media Platform: http://localhost:5000/rmp  
