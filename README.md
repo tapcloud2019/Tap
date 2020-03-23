@@ -22,11 +22,13 @@ In the same terminal
 **Python Environment:** Python 2
 
 **Command for activating required Python Virtual Environment:**  
-source ~/PythonEnv/DeepSpeech/bin/activate  
+Open a new terminal
+> source ~/PythonEnv/DeepSpeech/bin/activate  
 
 **Command for triggering the listener:**  
-cd ~/Tap  
-python listen_preprocess_notif.py  
+In the same terminal
+> cd ~/Tap  
+> python listen_preprocess_notif.py  
 
 ### 3) Generate NER tags for transcript and upload media file with new meta-data (Local file system to postprocess bucket):  
 **Description:** ner_and_upload.py listens for any transcript file placed in the local file system. It will take the transcript and generate NER tags for it. It will then search for its original media file in minio and append the meta-data to the original media file. The media file will then be uploaded to the postprocess bucket.
@@ -34,11 +36,13 @@ python listen_preprocess_notif.py
 **Python Environment:** Python 3
 
 **Command for activating required Python Virtual Environment:**  
-source ~/PythonEnv/py3_deeppavlov/bin/activate  
+Open a new terminal
+> source ~/PythonEnv/py3_deeppavlov/bin/activate  
 
 **Command for triggering the listener:**  
-cd ~/Tap  
-python ner_and_upload.py  
+In the same terminal
+> cd ~/Tap  
+> python ner_and_upload.py  
 
 ### 4) Rich Media Platform:  
 **Description:** Front end for interfacing with MinIO. 
@@ -47,7 +51,8 @@ python ner_and_upload.py
 - Display transcript of media file with colour coded named entity recognition tags, if any.
 
 **Command to execute:**  
-cd ~/TAP_RMP_FE_2019  
-node /home/raymond/.yarn/bin/serve -s build  
+Open a new terminal
+> cd ~/TAP_RMP_FE_2019  
+> node /home/raymond/.yarn/bin/serve -s build  
 
 ## Rich Media Platform: http://localhost:5000/rmp  
