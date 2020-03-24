@@ -56,3 +56,17 @@ Open a new terminal
 > node /home/raymond/.yarn/bin/serve -s build  
 
 ## Rich Media Platform: http://localhost:5000/rmp  
+
+### 5) [BONUS] Process live recording (Local file system to preprocess bucket):  
+**Description:** Record a live recording and saving it to local file system. record_and_upload.py listens for any WAV file placed in the local file system. It will take the recording and put it into our pipeline.
+
+**Python Environment:** Python 3
+
+**Command for activating required Python Virtual Environment:**  
+Open a new terminal
+> source ~/PythonEnv/py3_deeppavlov/bin/activate  
+
+**Command for triggering the listener:**  
+In the same terminal
+> cd ~/Tap  
+> python record_and_upload.py  

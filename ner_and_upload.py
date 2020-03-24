@@ -8,6 +8,7 @@ import glob, os
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+import sys
 
 user = 'raymond'
 
@@ -65,7 +66,7 @@ class Handler(FileSystemEventHandler):
             ner_model = build_model(configs.ner.ner_ontonotes_bert, download=False)
         except:
             print("An exception occurred")
-
+            
         ner = ner_model([transript])
 
         fileNameWOExt = os.path.splitext(transript_file)[0]
@@ -78,6 +79,8 @@ class Handler(FileSystemEventHandler):
 
         # Insert output from Deepspeech into this variable
         metadata = {"Transcript": transript, "Entities": json.dumps(ner)}
+        print(metadata)
+        print('metadata size: ' + str(sys.getsizeof(metadata)))
 
         # Append metadata onto original video and upload to new Minio Bucket
         found = False
@@ -93,15 +96,17 @@ class Handler(FileSystemEventHandler):
             try:
                 copy_result = minioClient.copy_object("postprocess", transript_fileWOExt+".mp4", "video/"+transript_fileWOExt+".mp4", metadata=metadata)
                 os.remove('/home/'+user+'/Tap/dataset/tap/transcription/'+transript_file)
-            except ResponseError as err:
-                print(err)
+            except:
+                print('error')
+                os.remove('/home/'+user+'/Tap/dataset/tap/transcription/'+transript_file)
         else:
             print('not found')
             try:
                 copy_result = minioClient.copy_object("postprocess", transript_fileWOExt+".WAV", "preprocess/"+transript_fileWOExt+".WAV", metadata=metadata)
                 os.remove('/home/'+user+'/Tap/dataset/tap/transcription/'+transript_file)
-            except ResponseError as err:
-                print(err)
+            except:
+                print('error')
+                os.remove('/home/'+user+'/Tap/dataset/tap/transcription/'+transript_file)
 
 if __name__ == '__main__':
     w = Watcher()
