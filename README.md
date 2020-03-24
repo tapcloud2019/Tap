@@ -70,3 +70,4 @@ Open a new terminal
 In the same terminal
 > cd ~/Tap  
 > python record_and_upload.py  
+Use any recording software to record a short audio clip. Save the recording with ".WAV" extension (cap sensitive). Save the recording to ~/Tap/dataset/tap/recording.  
