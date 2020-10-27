@@ -9,7 +9,7 @@ cffi==1.13.2
 chardet==3.0.4
 Click==7.0
 configparser==4.0.2
-cryptography==2.8
+cryptography==3.2
 Cython==0.29.12
 dataclasses==0.7
 DAWG-Python==0.7.2
